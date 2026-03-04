@@ -10,42 +10,46 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif
+}
 
 body{
 display:flex;
 background:#f5f8fd;
 color:#272829;
-font-size:clamp(14px,1vw,17px);
+font-size:16px;
 line-height:1.6;
 }
 
 /* Sidebar */
 .sidebar{
-width:clamp(220px,22vw,300px);
+width:250px;
 height:100vh;
 background:#040b14;
 color:#fff;
 position:fixed;
-left:0;top:0;
+left:0;
+top:0;
 padding:30px 20px;
 text-align:center;
-z-index:2;
-
 display:flex;
 flex-direction:column;
+z-index:1000;
 }
-.sidebar h2{font-size:26px;margin-bottom:5px}
-.sidebar p{font-size:14px;color:#aaa;margin-bottom:15px}
-.sidebar::after{
-content:"";
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-height:40px;
-background:linear-gradient(to bottom, transparent, #040b14);
-pointer-events:none;
+
+.sidebar h2{
+font-size:26px;
+margin-bottom:5px
+}
+
+.sidebar p{
+font-size:14px;
+color:#aaa;
+margin-bottom:15px
 }
 
 .nav{
@@ -53,13 +57,12 @@ flex:1;
 overflow-y:auto;
 margin-top:10px;
 scroll-behavior:smooth;
-
-/* Hide scrollbar */
-scrollbar-width:none;       /* Firefox */
--ms-overflow-style:none;    /* IE */
+scrollbar-width:none;
+-ms-overflow-style:none;
 }
+
 .nav::-webkit-scrollbar{
-display:none;               /* Chrome/Safari */
+display:none;
 }
 
 .nav a{
@@ -75,34 +78,47 @@ border-radius:4px;
 font-size:15px;
 text-align:left
 }
-.nav a i{width:20px}
-.nav a:hover{background:#149ddd;color:#fff}
 
+.nav a i{
+width:20px
+}
 
+.nav a:hover{
+background:#149ddd;
+color:#fff
+}
 
 /* Social */
-.social{margin-bottom:25px}
+.social{
+margin-bottom:25px
+}
+
 .social a{
 display:inline-block;
 margin:5px;
-width:36px;height:36px;
+width:36px;
+height:36px;
 line-height:36px;
 background:#212431;
 color:#fff;
 border-radius:50%;
 transition:.3s
 }
-.social a:hover{background:#149ddd}
+
+.social a:hover{
+background:#149ddd
+}
 
 /* Main */
 .main{
-margin-left:clamp(220px,22vw,300px);padding:40px;
-width:100%;
+margin-left:250px;
+width:calc(100% - 250px);
+padding:40px;
 background:#fff;
 min-height:100vh;
 }
 
-/* SECTION STYLE */
+/* Section */
 section{
 margin-bottom:50px;
 padding:35px;
@@ -126,6 +142,7 @@ display:inline-block;
 padding-bottom:5px
 }
 
+/* About */
 .about{
 display:flex;
 gap:30px;
@@ -135,14 +152,13 @@ align-items:flex-start;
 
 .about img{
 width:260px;
-height:300px;        /* fixed height */
-object-fit:cover;    /* crop instead of stretch */
+height:300px;
+object-fit:cover;
 border-radius:12px;
 border:5px solid #e4edf9;
 box-shadow:0 10px 20px rgba(0,0,0,.08)
 }
 
-/* info section */
 .about-info{
 flex:1;
 min-width:250px;
@@ -154,9 +170,8 @@ margin-top:20px;
 display:flex;
 flex-wrap:wrap;
 gap:10px;
-width:100%;
-flex-basis:100%;
 }
+
 .highlights span{
 background:#149ddd;
 color:#fff;
@@ -171,9 +186,8 @@ display:flex;
 gap:20px;
 margin-top:25px;
 flex-wrap:wrap;
-width:100%;
-flex-basis:100%;
 }
+
 .stat{
 flex:1;
 background:white;
@@ -182,7 +196,10 @@ border-radius:10px;
 text-align:center;
 box-shadow:0 5px 15px rgba(0,0,0,.08)
 }
-.stat h3{color:#149ddd}
+
+.stat h3{
+color:#149ddd
+}
 
 /* Skills */
 .skills{
@@ -190,15 +207,28 @@ display:grid;
 grid-template-columns:1fr 1fr;
 gap:25px
 }
-.skill span{font-size:15px;font-weight:600}
-.bar{
-height:8px;background:#ddd;
-margin-top:5px;border-radius:20px
+
+.skill span{
+font-size:15px;
+font-weight:600
 }
+
+.bar{
+height:8px;
+background:#ddd;
+margin-top:5px;
+border-radius:20px
+}
+
 .bar div{
 height:8px;
 background:#149ddd;
 border-radius:20px
+}
+
+/* Resume */
+.resume-item{
+margin-bottom:25px;
 }
 
 .exp-header{
@@ -209,15 +239,21 @@ margin-bottom:10px;
 flex-wrap:wrap;
 }
 
-.exp-header h5{font-size:18px}
-.exp-header span{font-size:14px}
+.exp-header h5{
+font-size:18px
+}
 
-.exp-details p,
+.exp-header span{
+font-size:14px
+}
+
 .exp-details li{
 font-size:15px;
 margin-bottom:6px;
+margin-left:20px;
 }
 
+/* Education */
 .edu-flex{
 display:flex;
 justify-content:space-between;
@@ -225,46 +261,13 @@ align-items:flex-start;
 gap:20px;
 }
 
-.cv-link{
-display:flex;
-align-items:center;
-gap:10px;
-padding:12px 15px;
-margin-top:10px;
-background:#149ddd;
-color:#fff !important;
-border-radius:4px;
-text-decoration:none;
-font-size:15px;
-transition:.3s;
+.edu-flex h5{
+font-size:18px
 }
 
-.cv-link:hover{
-background:#0d7cb5;
+.edu-flex p{
+font-size:15px
 }
-
-
-/* Resume style */
-.resume-item{
-margin-bottom:25px;
-padding-left:0px;
-border-left:none;
-}
-.resume-item h4{font-size:19px;margin-bottom:5px}
-.resume-item span{
-font-size:13px;
-background:#e4edf9;
-padding:3px 10px;
-border-radius:5px
-}
-.resume-item li{
-font-size:15px;
-margin-left:20px;
-}
-
-/* Education */
-.edu-flex h5{font-size:18px}
-.edu-flex p{font-size:15px}
 
 /* Contact */
 .contact{
@@ -272,13 +275,18 @@ display:grid;
 grid-template-columns:1fr 1fr;
 gap:30px
 }
+
 .contact-box{
 background:#fff;
 padding:20px;
 border-radius:10px;
 box-shadow:0 0 15px rgba(0,0,0,.08)
 }
-.contact-box p{font-size:15px;margin-bottom:10px}
+
+.contact-box p{
+font-size:15px;
+margin-bottom:10px
+}
 
 input,textarea{
 width:100%;
@@ -288,6 +296,7 @@ border:1px solid #ccc;
 border-radius:5px;
 font-size:14px;
 }
+
 button{
 background:#149ddd;
 color:#fff;
@@ -298,33 +307,85 @@ border-radius:5px;
 cursor:pointer;
 font-size:15px;
 }
-button:hover{background:#0d7cb5}
 
-iframe{width:100%;height:250px;border:0;border-radius:10px}
-
-/* Responsive */
-@media(max-width:900px){
-.sidebar{position:relative;width:100%;height:auto}
-.main{margin-left:0}
-.contact{grid-template-columns:1fr}
-.skills{grid-template-columns:1fr}
-body{font-size:15px}
-.title{font-size:26px}
-.sidebar h2{font-size:22px}
+button:hover{
+background:#0d7cb5
 }
-</style>
+
+iframe{
+width:100%;
+height:250px;
+border:0;
+border-radius:10px
+}
+
+/* Small Screen Adjustment (Same Layout Maintain) */
+@media(max-width:768px){
+
+body{
+flex-direction:column;
+}
+
+/* Sidebar top me aa jayega */
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+padding:20px;
+}
+
+/* Nav horizontal scroll ho sakta hai */
+.nav{
+display:flex;
+flex-wrap:nowrap;
+overflow-x:auto;
+overflow-y:hidden;
+}
+
+.nav a{
+white-space:nowrap;
+margin:5px;
+}
+
+/* Main full width */
+.main{
+margin-left:0;
+width:100%;
+padding:20px;
+}
+
+.about{
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.about img{
+width:200px;
+height:auto;
+}
+
+.skills{
+grid-template-columns:1fr;
+}
+
+.contact{
+grid-template-columns:1fr;
+}
+
+}</style>
 </head>
 
 <body>
+
 
 <div class="sidebar">
 <h2>Bhupendra Birla</h2>
 <p> .Net Developer</p>
 
 <div class="social">
-<a href="https://www.facebook.com/profile.php?id=100006022365949&rdid=wzk0dyTWiWZ4CAOc&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AE42HNqaR%2F#" target="_blank"><i class="fab fa-facebook-f"></i></a>
 <a href="https://wa.me/918871457274" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<a href="https://www.instagram.com/reel/DU139z7E0UO/?igsh=Ymx1amh2YWZ6NjMz" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.instagram.com/b.birla98?igsh=ZXdqeHp0NnpoZno4" target="_blank"><i class="fab fa-instagram"></i></a>
 <a href="https://www.linkedin.com/in/bhupendra-birla-a12b59169?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>
 </div>
 
@@ -335,6 +396,7 @@ body{font-size:15px}
 <a href="#project"><i class="fas fa-diagram-project"></i> Project</a>
 <a href="#education"><i class="fa fa-graduation-cap"></i> Education</a>
 <a href="#achievements"><i class="fa fa-trophy"></i> Achievements</a>
+<a href="#ai"><i class="fa-solid fa-robot"></i> AI Knowledge</a>
 <a href="#contact"><i class="fa fa-envelope"></i> Contact</a>
 <a href="assets/cv/Bhupendra_Birla_CV.pdf" target="_blank" download class="cv-btn">
    <i class="fa fa-download"></i> Download CV
@@ -467,6 +529,20 @@ body{font-size:15px}
 </div>
 </section>
 
+<section id="ai">
+<div class="title">AI Software Knowledge</div>
+
+<div class="resume-item">
+<li>🤖 ChatGPT – Prompt engineering, code generation, debugging & content creation</li>
+<li>🚀 Antigravity – AI-based automation & intelligent assistance tools</li>
+<li>🧠 Claude – Advanced reasoning, document analysis & structured output generation</li>
+<li>💻 Codex – AI-powered code completion & backend logic support</li>
+<li>⚡ Cursor – AI-integrated IDE for faster development & smart refactoring</li>
+<li>🛠 GitHub Copilot – Real-time AI coding assistant for productivity boost</li>
+</div>
+
+</section>
+
 <section id="contact">
 <div class="title">Contact</div>
 <div class="contact">
@@ -521,6 +597,12 @@ e.target.reset();
 .catch(err=>{
 alert("Error saving data");
 });
+}
+
+function toggleMenu(){
+let sidebar = document.querySelector(".sidebar");
+sidebar.classList.toggle("active");
+document.body.classList.toggle("menu-open");
 }
 </script>
 
